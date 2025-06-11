@@ -1,0 +1,16 @@
+#!/bin/bash
+
+set -xe
+
+APP_ID=$1
+REPO_URL=$2
+REPO_NAME=$3
+
+# 获取${APP_ID}/layer下面的layer文件
+layer_file=(${APP_ID}/*.layer)
+if [[ -z "$layer_file" ]]; then
+  echo "No layer file found in ${APP_ID}/"
+  exit -1
+fi
+
+linglong-tools push -f "${layer_file[0]}" -r "$REPO_URL" -n "$REPO_NAME"
