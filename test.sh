@@ -5,7 +5,6 @@
 set -x
 
 APP_ID=$1
-VERSION=$2
 
 # 获取${APP_ID}/layer下面的layer文件
 layer_file=(${APP_ID}/*.layer)
@@ -30,7 +29,7 @@ if echo "$ps_output" | grep "$APP_ID" > /dev/null; then
   sudo ll-cli uninstall "$APP_ID"
   sudo ll-cli prune
 else
-  echo "failed: $APP_ID $VERSION no running (no match APP_ID)"
+  echo "failed: $APP_ID no running (no match APP_ID)"
   sudo ll-cli uninstall "$APP_ID"
   sudo ll-cli prune
   exit -1
